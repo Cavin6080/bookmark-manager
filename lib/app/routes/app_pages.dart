@@ -1,3 +1,5 @@
+import 'package:bookmark_manager/app/modules/onboarding/bindings/onboarding_binding.dart';
+import 'package:bookmark_manager/app/modules/onboarding/views/onboarding_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.ONBOARDING,
+      page: () => const OnboardingView(),
+      binding: OnboardingBinding(),
     ),
   ];
 }
