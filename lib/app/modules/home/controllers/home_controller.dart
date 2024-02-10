@@ -1,12 +1,19 @@
 import 'package:get/get.dart';
+import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
 
-  final count = 0.obs;
+  final listOfMedias = [].obs;
   @override
   void onInit() {
+    listenShareMediaFiles();
     super.onInit();
+  }
+
+  void listenShareMediaFiles() {
+    ReceiveSharingIntent.getInitialMedia().then((value) => listOfMedias.value = value);
+    update();
   }
 
   @override
@@ -18,6 +25,4 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
