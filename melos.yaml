@@ -1,0 +1,23 @@
+name: melos-monorepo
+
+packages:
+  - packages/bookmark_manager_extension
+  - packages/bookmark_manager_app
+
+scripts:
+  analyze:
+    run: |
+      melos exec -c 2 -- \
+        dart analyze . --fatal-infos
+
+  build-apk:
+    description: Builds the APK File
+    packageFilters:
+      flutter: true
+      dirExists: lib
+      scope: bookmark_manager_app
+    exec: flutter build apk
+
+  format:
+    description: Formats the files
+    exec: dart format . --line-length 100
