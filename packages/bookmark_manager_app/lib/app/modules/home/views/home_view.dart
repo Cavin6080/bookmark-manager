@@ -4,8 +4,8 @@ import 'package:bookmark_manager/app/modules/home/views/reminders_widget.dart';
 import 'package:bookmark_manager/app/routes/app_pages.dart';
 import 'package:bookmark_manager/app/utils/extensions.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_link_previewer/flutter_link_previewer.dart';
 
 import 'package:get/get.dart';
 import 'package:link_preview_generator/link_preview_generator.dart';
@@ -18,7 +18,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
-      final selectedValue = controller.selectedIndex.value ?? 0;
+      final selectedValue = controller.selectedIndex.value;
 
       return Scaffold(
         backgroundColor: const Color(0xFF231651),
@@ -35,9 +35,11 @@ class HomeView extends GetView<HomeController> {
           selectedIndex: selectedValue,
           items: [
             FlashyTabBarItem(icon: const Icon(Icons.home_outlined), title: const Text('Home')),
-            FlashyTabBarItem(icon: const Icon(Icons.favorite_border), title: const Text('Favorites')),
+            FlashyTabBarItem(
+                icon: const Icon(Icons.favorite_border), title: const Text('Favorites')),
             FlashyTabBarItem(icon: const Icon(Icons.event), title: const Text('Reminders')),
-            FlashyTabBarItem(icon: const Icon(Icons.account_circle_outlined), title: const Text('Account')),
+            FlashyTabBarItem(
+                icon: const Icon(Icons.account_circle_outlined), title: const Text('Account')),
           ],
           onItemSelected: (int value) {
             controller.changeSelectedIndex(value);
@@ -83,26 +85,51 @@ class HomePageWidget extends StatelessWidget {
             Expanded(
               child: GetBuilder<HomeController>(builder: (controller) {
                 final list = controller.listOfMedias;
-                return ListView.builder(
-                  itemCount: list.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          LinkPreviewGenerator(
-                            graphicFit: BoxFit.fitHeight,
-                            bodyMaxLines: 7,
-                            link: list[index].url ?? '',
-                            linkPreviewStyle: LinkPreviewStyle.large,
-                            showGraphic: true,
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );
+                if (kIsWeb) {
+                  return GridView.builder(
+                    itemCount: list.length,
+                    scrollDirection: Axis.vertical,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LinkPreviewGenerator(
+                              graphicFit: BoxFit.fitHeight,
+                              bodyMaxLines: 7,
+                              link: list[index].url ?? '',
+                              linkPreviewStyle: LinkPreviewStyle.large,
+                              showGraphic: true,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return ListView.builder(
+                    itemCount: list.length,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LinkPreviewGenerator(
+                              graphicFit: BoxFit.fitHeight,
+                              bodyMaxLines: 7,
+                              link: list[index].url ?? '',
+                              linkPreviewStyle: LinkPreviewStyle.large,
+                              showGraphic: true,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                }
               }),
             ),
           ],
