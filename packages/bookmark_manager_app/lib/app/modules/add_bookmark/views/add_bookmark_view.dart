@@ -1,3 +1,4 @@
+import 'package:bookmark_manager/app/animations/app_animation.dart';
 import 'package:bookmark_manager/app/utils/extensions.dart';
 import 'package:bookmark_manager/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -43,31 +44,51 @@ class AddBookmarkView extends GetView<AddBookmarkController> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 20.h,
-                TextField(
-                  controller: controller.titleController,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                      hintText: 'Title', border: OutlineInputBorder(), hintStyle: TextStyle(color: Colors.white)),
+                SlideAndFadeAnimationWrapper(
+                  delay: 100,
+                  child: TextField(
+                    controller: controller.titleController,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
+                        hintText: 'Title',
+                        border: OutlineInputBorder(),
+                        hintStyle: TextStyle(color: Colors.white)),
+                  ),
                 ),
                 8.h,
-                TextField(
-                  controller: controller.urlController,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                      hintText: 'URL', border: OutlineInputBorder(), hintStyle: TextStyle(color: Colors.white)),
+                SlideAndFadeAnimationWrapper(
+                  delay: 200,
+                  child: TextField(
+                    controller: controller.urlController,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
+                        hintText: 'URL',
+                        border: OutlineInputBorder(),
+                        hintStyle: TextStyle(color: Colors.white)),
+                  ),
                 ),
                 18.h,
-                CustomButton(
-                  onPressed: () async {
-                    final isAdded = await controller.saveBookmark(controller.titleController.text, controller.urlController.text);
-                    if (isAdded) {
-                      Get.snackbar('Saved', 'Your bookmark is saved successfully');
-                    } else {
-                      Get.snackbar('Error', 'Your bookmark can\'t be saved', backgroundColor: Colors.red);
-                    }
-                  },
-                  color: Colors.white,
-                  child: const Text('Save'),
+                SlideAndFadeAnimationWrapper(
+                  delay: 350,
+                  child: GetBuilder<AddBookmarkController>(
+                    builder: (logic) {
+                      return CustomButton(
+                        buttonState: logic.isLoading ? ButtonState.inProgress : ButtonState.normal,
+                        onPressed: () async {
+                          final isAdded = await controller.saveBookmark(
+                              controller.titleController.text, controller.urlController.text);
+                          if (isAdded) {
+                            Get.snackbar('Saved', 'Your bookmark is saved successfully');
+                          } else {
+                            Get.snackbar('Error', 'Your bookmark can\'t be saved',
+                                backgroundColor: Colors.red);
+                          }
+                        },
+                        color: Colors.white,
+                        child: const Text('Save'),
+                      );
+                    },
+                  ),
                 ),
               ],
             )

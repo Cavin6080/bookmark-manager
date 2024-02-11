@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
   var listOfMedias = <Data>[];
   RxInt selectedIndex = 0.obs;
   @override
@@ -20,7 +18,7 @@ class HomeController extends GetxController {
     update();
   }
 
-  void getBookmarks() async {
+  Future<void> getBookmarks() async {
     final response = await Dio().get('https://directus-supabase.onrender.com/items/bookmarks');
     final parsedResponse = BookmarkDataModel.fromJson(response.data);
     listOfMedias = parsedResponse.data ?? [];
