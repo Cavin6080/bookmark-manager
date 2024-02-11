@@ -9,6 +9,7 @@ abstract class Routes {
   static const LOG_IN = _Paths.LOG_IN;
   static const SPLASH = _Paths.SPLASH;
   static const ONBOARDING = _Paths.ONBOARDING;
+  static const ADD_BOOKMARK = _Paths.ADD_BOOKMARK;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const LOG_IN = '/log-in';
   static const SPLASH = '/splash';
   static const ONBOARDING = '/onboarding';
+  static const ADD_BOOKMARK = '/add-bookmark';
 }
