@@ -31,6 +31,60 @@ class AccountWidget extends StatelessWidget {
             ],
           ),
           20.h,
+          ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(16),
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              Container(
+                decoration: BoxDecoration(border: Border.all(color: Colors.white, width: 2)),
+                child: const ListTile(
+                  leading: Icon(
+                    Icons.person_2_outlined,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'Profile',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              8.h,
+              Container(
+                decoration: BoxDecoration(border: Border.all(color: Colors.white, width: 2)),
+                child: const ListTile(
+                  leading: Icon(
+                    Icons.edit_note,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'Terms of use',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              8.h,
+              Container(
+                decoration: BoxDecoration(border: Border.all(color: Colors.white, width: 2)),
+                child: const ListTile(
+                  leading: Icon(
+                    Icons.security,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'Privacy Policy',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
