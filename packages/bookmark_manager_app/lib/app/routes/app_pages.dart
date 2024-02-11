@@ -1,11 +1,14 @@
-import 'package:bookmark_manager/app/modules/onboarding/bindings/onboarding_binding.dart';
-import 'package:bookmark_manager/app/modules/onboarding/views/onboarding_view.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
+import '../modules/add_bookmark/bindings/add_bookmark_binding.dart';
+import '../modules/add_bookmark/views/add_bookmark_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/log_in/bindings/log_in_binding.dart';
 import '../modules/log_in/views/log_in_view.dart';
+import '../modules/onboarding/bindings/onboarding_binding.dart';
+import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -14,7 +17,14 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  // ignore: constant_identifier_names, non_constant_identifier_names
+  static String INITIAL() {
+    if (kIsWeb) {
+      return Routes.HOME;
+    } else {
+      return Routes.SPLASH;
+    }
+  }
 
   static final routes = [
     GetPage(
@@ -36,6 +46,11 @@ class AppPages {
       name: _Paths.ONBOARDING,
       page: () => const OnboardingView(),
       binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_BOOKMARK,
+      page: () => const AddBookmarkView(),
+      binding: AddBookmarkBinding(),
     ),
   ];
 }

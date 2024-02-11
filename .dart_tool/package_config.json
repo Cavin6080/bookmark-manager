@@ -116,12 +116,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "husky",
-      "rootUri": "file:///Users/cavin/.pub-cache/hosted/pub.dev/husky-0.1.7",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "io",
       "rootUri": "file:///Users/cavin/.pub-cache/hosted/pub.dev/io-1.0.4",
       "packageUri": "lib/",
@@ -302,7 +296,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-02-10T13:05:25.712441Z",
+  "generated": "2024-02-11T02:01:32.238090Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }
