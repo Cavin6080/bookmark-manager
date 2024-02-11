@@ -13,7 +13,9 @@ class SplashController extends GetxController {
   }
 
   Future<void> listenShareMediaFiles() async {
-    ReceiveSharingIntent.getInitialMedia().then((value) => listOfMedias.value = value).whenComplete(() async {
+    ReceiveSharingIntent.getInitialMedia()
+        .then((value) => listOfMedias.value = value)
+        .whenComplete(() async {
       try {
         await Dio().post(
             options: Options(

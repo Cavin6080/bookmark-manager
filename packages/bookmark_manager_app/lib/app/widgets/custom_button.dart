@@ -85,7 +85,8 @@ class CustomButton extends StatelessWidget {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               shadowColor: Colors.transparent,
-              backgroundColor: !(isDisabled ?? false) ? color ?? const Color(0xFF231651) : Colors.grey,
+              backgroundColor:
+                  !(isDisabled ?? false) ? color ?? const Color(0xFF231651) : Colors.grey,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(radiusToSet),
               ),

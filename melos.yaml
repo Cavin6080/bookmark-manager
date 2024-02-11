@@ -18,6 +18,13 @@ scripts:
       scope: bookmark_manager_app
     exec: flutter build apk
 
+  build-extension:
+    description: Builds the Extension Fille
+    packageFilters:
+      flutter: true
+      scope: bookmark_manager_extension
+    exec: flutter build web --web-renderer html --csp
+
   format:
     description: Formats the files
     exec: dart format . --line-length 100
