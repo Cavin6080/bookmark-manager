@@ -15,7 +15,7 @@ scripts:
     packageFilters:
       flutter: true
       dirExists: lib
-      scope: bookmark_manager_app
+      scope: bookmark_manager
     exec: flutter build apk
 
   build-extension:
