@@ -9,15 +9,22 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SplashView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      backgroundColor: const Color(0xFF231651),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Image.asset(
+              'assets/images/one_save_background_text.png',
+              width: MediaQuery.of(context).size.width * 0.6,
+            ),
+          ),
+          const Text(
+            'Never lose a link again.',
+            style: TextStyle(color: Colors.white),
+          )
+        ],
       ),
     );
   }
