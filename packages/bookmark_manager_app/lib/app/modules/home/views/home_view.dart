@@ -5,7 +5,6 @@ import 'package:bookmark_manager/app/routes/app_pages.dart';
 import 'package:bookmark_manager/app/utils/extensions.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_link_previewer/flutter_link_previewer.dart';
 
 import 'package:get/get.dart';
 import 'package:link_preview_generator/link_preview_generator.dart';
@@ -18,7 +17,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
-      final selectedValue = controller.selectedIndex.value ?? 0;
+      final selectedValue = controller.selectedIndex.value;
 
       return Scaffold(
         backgroundColor: const Color(0xFF231651),
@@ -35,9 +34,11 @@ class HomeView extends GetView<HomeController> {
           selectedIndex: selectedValue,
           items: [
             FlashyTabBarItem(icon: const Icon(Icons.home_outlined), title: const Text('Home')),
-            FlashyTabBarItem(icon: const Icon(Icons.favorite_border), title: const Text('Favorites')),
+            FlashyTabBarItem(
+                icon: const Icon(Icons.favorite_border), title: const Text('Favorites')),
             FlashyTabBarItem(icon: const Icon(Icons.event), title: const Text('Reminders')),
-            FlashyTabBarItem(icon: const Icon(Icons.account_circle_outlined), title: const Text('Account')),
+            FlashyTabBarItem(
+                icon: const Icon(Icons.account_circle_outlined), title: const Text('Account')),
           ],
           onItemSelected: (int value) {
             controller.changeSelectedIndex(value);
