@@ -4,6 +4,7 @@ import 'package:bookmark_manager/app/modules/home/views/reminders_widget.dart';
 import 'package:bookmark_manager/app/routes/app_pages.dart';
 import 'package:bookmark_manager/app/utils/extensions.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -84,26 +85,51 @@ class HomePageWidget extends StatelessWidget {
             Expanded(
               child: GetBuilder<HomeController>(builder: (controller) {
                 final list = controller.listOfMedias;
-                return ListView.builder(
-                  itemCount: list.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          LinkPreviewGenerator(
-                            graphicFit: BoxFit.fitHeight,
-                            bodyMaxLines: 7,
-                            link: list[index].url ?? '',
-                            linkPreviewStyle: LinkPreviewStyle.large,
-                            showGraphic: true,
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );
+                if (kIsWeb) {
+                  return GridView.builder(
+                    itemCount: list.length,
+                    scrollDirection: Axis.vertical,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LinkPreviewGenerator(
+                              graphicFit: BoxFit.fitHeight,
+                              bodyMaxLines: 7,
+                              link: list[index].url ?? '',
+                              linkPreviewStyle: LinkPreviewStyle.large,
+                              showGraphic: true,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return ListView.builder(
+                    itemCount: list.length,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LinkPreviewGenerator(
+                              graphicFit: BoxFit.fitHeight,
+                              bodyMaxLines: 7,
+                              link: list[index].url ?? '',
+                              linkPreviewStyle: LinkPreviewStyle.large,
+                              showGraphic: true,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                }
               }),
             ),
           ],

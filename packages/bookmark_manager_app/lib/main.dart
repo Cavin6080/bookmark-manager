@@ -10,7 +10,7 @@ void main() {
     GetMaterialApp(
       initialBinding: InitialBinding(),
       title: "Application",
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.INITIAL(),
       getPages: AppPages.routes,
     ),
   );

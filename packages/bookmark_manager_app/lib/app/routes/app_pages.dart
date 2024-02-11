@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../modules/add_bookmark/bindings/add_bookmark_binding.dart';
@@ -16,8 +17,14 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  // ignore: constant_identifier_names
-  static const INITIAL = Routes.SPLASH;
+  // ignore: constant_identifier_names, non_constant_identifier_names
+  static String INITIAL() {
+    if (kIsWeb) {
+      return Routes.HOME;
+    } else {
+      return Routes.SPLASH;
+    }
+  }
 
   static final routes = [
     GetPage(
